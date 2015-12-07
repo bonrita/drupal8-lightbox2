@@ -1,0 +1,22 @@
+modal:
+  version: VERSION
+  js:
+    js/lightbox2_modal.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax
+    - core/jquery.ui.dialog
+
+lightbox2:
+  version: VERSION
+  js:
+    js/lightbox2.js: {}
+
+lightbox:
+  version: VERSION
+  js:
+    js/lightbox.js: {}
+  css:
+    theme:
+      css/lightbox.css: {}

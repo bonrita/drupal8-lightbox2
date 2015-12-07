@@ -1,0 +1,6 @@
+lightbox2.general:
+  title: 'Lightbox2'
+  description: 'Allows the user to configure the lightbox2 settings.'
+  route_name: lightbox2_general
+  parent: system.admin_config_ui
+  weight: -1

@@ -1,0 +1,4 @@
+lightbox2_general:
+  route_name: lightbox2_general
+  title: 'General'
+  base_route: lightbox2_general

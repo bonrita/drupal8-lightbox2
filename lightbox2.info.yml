@@ -1,0 +1,6 @@
+name: Lightbox2
+type: module
+description: Enables Lightbox2 for Drupal.
+package: Custom
+core: 8.x
+configure: lightbox2_general

@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * This module holds functions useful for the lightbox2.
+ * Please contribute!
+ */
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function lightbox2_page_attachments_alter(&$page) {
+  // Add logic when adding or not to add light box js.
+  // See hook_init d7 sister module.
+  _lightbox2_add_files($page);
+}
+
+/**
+ * Provide links to the CSS stylesheet and JS file associated with
+ * this module.
+ */
+function _lightbox2_add_files(&$page) {
+  $account = \Drupal::currentUser();
+  $config = \Drupal::config('lightbox2.settings');
+
+  // Enable modal login.
+  _lightbox2_enable_modal_login($page, $account, $config);
+}
+
+/**
+ * Enable lightbox effect on the login form block.
+ *
+ * @param $page
+ *  A list of page properties.
+ */
+function _lightbox2_enable_modal_login(&$page, $account, $config) {
+
+  $enable_login = $account->id() == 0 && $config->get('enable_login');
+
+  if ($enable_login) {
+    $page['#attached']['drupalSettings']['lightbox2']['enable_login'] = $enable_login;
+
+    $page['#attached']['library'][] = 'lightbox2/lightbox';
+    $page['#attached']['library'][] = 'lightbox2/modal';
+
+
+  }
+}
+
+function lightbox2_link_alter(&$variables) {
+  // Add a warning to the end of route links to the admin section.
+  if (isset( $variables['options']['attributes']['data-drupal-link-system-path']) &&  $variables['options']['attributes']['data-drupal-link-system-path'] == 'user/login') {
+    $variables['options']['attributes']['data-lightbox'] = 'login_form';
+  }
+}
